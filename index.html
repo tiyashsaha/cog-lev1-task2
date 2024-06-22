@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .color-button, .greet-button, .calculator button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+            color: white;
+        }
+
+        .color-button {
+            background-color: #007bff;
+        }
+
+        .color-button:hover {
+            background-color: #0056b3;
+        }
+
+        .greet-button {
+            background-color: #ffc107;
+        }
+
+        .greet-button:hover {
+            background-color: #e0a800;
+        }
+
+        .calculator {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .calculator input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .calculator button {
+            background-color: #28a745;
+        }
+
+        .calculator button:hover {
+            background-color: #218838;
+        }
+
+        #result {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cognifyz level 1 Task 2</h1>
+
+    A button that changes colour on clicking..
+    <!-- Button that changes color on click -->
+    <button class="color-button" id="colorButton">Click me!</button>
+
+    A button that shows greeting on clicking..
+    <!-- Button to display greeting message -->
+    <button class="greet-button" onclick="displayGreeting()">Show Greeting</button>
+
+    <br>
+    <br>
+    A calculator to add two numbers
+    <!-- Calculator -->
+    <div class="calculator">
+        <h2>Simple Calculator</h2>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+        <button onclick="calculate()">Add</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // Button that changes color on click
+        document.getElementById('colorButton').addEventListener('click', function() {
+            const colors = ['red', 'green', 'blue', 'orange', 'purple'];
+            const currentColor = this.style.backgroundColor;
+            let newColor = colors[Math.floor(Math.random() * colors.length)];
+            while (newColor === currentColor) {
+                newColor = colors[Math.floor(Math.random() * colors.length)];
+            }
+            this.style.backgroundColor = newColor;
+        });
+
+        // Display greeting message based on current time
+        function displayGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+            let greeting;
+
+            if (hours < 12) {
+                greeting = 'Good Morning!';
+            } else if (hours < 18) {
+                greeting = 'Good Afternoon!';
+            } else {
+                greeting = 'Good Evening!';
+            }
+
+            alert(greeting);
+        }
+
+        // Calculator function
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            if (!isNaN(num1) && !isNaN(num2)) {
+                const sum = num1 + num2;
+                document.getElementById('result').innerText = 'Result: ' + sum;
+            } else {
+                document.getElementById('result').innerText = 'Please enter valid numbers';
+            }
+        }
+    </script>
+</body>
+</html>
